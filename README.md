@@ -3,7 +3,7 @@ Webservice API for mobile Application
 
 Walkthrough blog post - 
 
-This is the first blog post, presenting the backend associated with a sample application: NotebookApp.
+This is the first blog post, presenting the backend associated with a sample application: SerapisPatient.
 
 It is a quick walkthrough on using .NET Core 2 to build a Web API layer using MongoDB .NET Driver version 2. All the calls to the database are asynchronous.
 Topics Covered
