@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SerapisPatientAPI.Interfaces;
+using SerapisPatientAPI.Model;
 
 namespace SerapisPatientAPI.Controllers
 {
@@ -11,15 +13,22 @@ namespace SerapisPatientAPI.Controllers
     [Route("api/Doctor")]
     public class DoctorController : Controller
     {
+        
+        private readonly IDoctorRepository _doctorRepository;
+        public DoctorController(IDoctorRepository doctorRepository)
+        {
+            _doctorRepository = doctorRepository;    
+        }
+
         // GET: api/Doctor
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<Doctor>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return await _doctorRepository.GetAllDoctor(); 
         }
 
         // GET: api/Doctor/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "GetDoctor")]
         public string Get(int id)
         {
             return "value";

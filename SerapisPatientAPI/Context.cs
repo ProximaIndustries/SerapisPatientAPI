@@ -34,5 +34,12 @@ namespace SerapisPatientAPI
                 return _database.GetCollection<Practice>("MedicalPractices");
             }
         }
+        public IMongoCollection<PatientUser> PatientCollection
+        {
+            get
+            {
+                return _database.GetCollection<PatientUser>("Patients");
+            }
+        }
     }
 }

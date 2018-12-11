@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace SerapisPatientAPI.Interfaces
 {
-    public interface IDoctorRepository
+    public interface IAccountRepository
     {
-        Task AddDoctor(Doctor Doc);
-        Task<IEnumerable<Doctor>> GetAllDoctor();
-        Task<Doctor> GetDoctor(string var1);
+        Task<IEnumerable<PatientUser>> GetAllPatients();
+        Task AddPatient(PatientUser user);
     }
 }

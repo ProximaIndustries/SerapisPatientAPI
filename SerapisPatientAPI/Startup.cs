@@ -35,9 +35,10 @@ namespace SerapisPatientAPI
                 options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
                 options.Database = Configuration.GetSection("MongoConnection:Database").Value;
             });
-            //In order to access NoteRepository using DI model, we add a new line in ConfigureServices
+            //In order to access <name>Repository  using DI model, we add a new line in ConfigureServices
             services.AddTransient<IDoctorRepository, DoctorRepository>();
             services.AddTransient<IPracticeRepository, PracticeRepository>();
+            services.AddTransient<IAccountRepository, AccountRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
