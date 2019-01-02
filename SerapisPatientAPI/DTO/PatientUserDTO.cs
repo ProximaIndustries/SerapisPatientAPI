@@ -17,14 +17,14 @@ namespace SerapisPatientAPI.DTO
     //        They only have simple setters and getters.
        [Required]
         [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
+        public string EmailDTO { get; set; }
         [Required]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string PasswordDTO { get; set; }
         [Required]
         [DataType(DataType.Password)]
         [BsonElement("password")]
-        public string ConfirmPassword { get; set; }
+        public string ConfirmPasswordDTO { get; set; }
 
         [BsonId]
         public ObjectId Id { get; set; }
