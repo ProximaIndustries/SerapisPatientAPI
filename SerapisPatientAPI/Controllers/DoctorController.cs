@@ -38,6 +38,7 @@ namespace SerapisPatientAPI.Controllers
         [HttpPost]
         public void Post([FromBody]string value)
         {
+            
         }
         
         // PUT: api/Doctor/5

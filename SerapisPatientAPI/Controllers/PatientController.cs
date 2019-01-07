@@ -13,21 +13,21 @@ using SerapisPatientAPI.Model;
 namespace SerapisPatientAPI.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Account")]
-    public class AccountController : Controller
+    [Route("api/Patient")]
+    public class PatientController : Controller
     {
 
-        private readonly IAccountRepository _accountRepository;
-        public AccountController(IAccountRepository accountRepository)
+        private readonly IPatientRepository _patientRepository;
+        public PatientController(IPatientRepository patientRepository)
         {
-            _accountRepository = accountRepository;
+            _patientRepository = patientRepository;
         }
 
         //GET: api/Account
         [HttpGet]
         public async Task<IEnumerable<PatientUser>> Get()
         {
-            return await _accountRepository.GetAllPatients();
+            return await _patientRepository.GetAllPatients();
         }
 
         // GET: api/Account/5
@@ -42,7 +42,7 @@ namespace SerapisPatientAPI.Controllers
         public async Task<IActionResult> Post([FromBody] PatientUser patient)
         {
             //should pass through the DTO befoere going to the model(business logic)
-            await _accountRepository.AddPatient(patient);
+            await _patientRepository.AddPatient(patient);
             return new OkObjectResult(patient);
         }
 

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Model\PatientModel\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

@@ -8,7 +8,7 @@ using MongoDB.Driver;
 
 namespace SerapisPatientAPI.Data
 {
-    public class AccountRepository : IAccountRepository 
+    public class AccountRepository : IPatientRepository 
     {
         private readonly Context _context = null;
         public AccountRepository()
