@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using SerapisPatientAPI.Model;
+using SerapisPatientAPI.Model.PatientModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,8 +26,13 @@ namespace SerapisPatientAPI
             get
             {
                 return _database.GetCollection<Doctor>("MedicalProfessionals");
+                
             }
         }
+
+        public IMongoCollection<PatientBooking> BookingsCollection => _database.GetCollection<PatientBooking>("PatientBookings");
+        
+
         public IMongoCollection<Practice> PracticeCollection
         {
             get

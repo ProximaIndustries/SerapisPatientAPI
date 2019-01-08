@@ -5,13 +5,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using SerapisPatientAPI.Interfaces;
 using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace SerapisPatientAPI.Data
 {
-    public class AccountRepository : IPatientRepository 
+    public class PatientRepository : IPatientRepository 
     {
         private readonly Context _context = null;
-        public AccountRepository()
+        public PatientRepository()
         {
             _context = new Context();
         }
@@ -31,10 +32,22 @@ namespace SerapisPatientAPI.Data
             }
         }
 
+        private ObjectId GetInternalId(string id)
+        {
+            ObjectId internalId;
+            if (!ObjectId.TryParse(id, out internalId))
+                internalId = ObjectId.Empty;
+
+            return internalId;
+        }
+
         public async Task AddPatient(PatientUser patient )
         {
+            //var res = Query<Product>.EQ(p => p.Id, id);
             await _context.PatientCollection.InsertOneAsync(patient);
 
         }
+       
+        
     }
 }

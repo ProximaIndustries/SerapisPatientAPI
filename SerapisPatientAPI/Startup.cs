@@ -39,6 +39,7 @@ namespace SerapisPatientAPI
             services.AddTransient<IDoctorRepository, DoctorRepository>();
             services.AddTransient<IPracticeRepository, PracticeRepository>();
             services.AddTransient<IPatientRepository, AccountRepository>();
+            services.AddTransient<IBookingRepository, BookingRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
