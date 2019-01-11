@@ -8,7 +8,8 @@ namespace SerapisPatientAPI.Interfaces
 {
     public interface IPracticeRepository
     {
-        //Get all the practices (Used in the patient application), max distance is the radius from whicih to pick from 
+        //Get all the practices (Used in the patient application)
+        //max distance is the radius from whicih to pick from (user settings)
         //using geospatial in mongo to query and leave out practices that are out of the radius
         Task<IEnumerable<Practice>> GetPractices(object _id, double maxDistance);
 
@@ -23,6 +24,6 @@ namespace SerapisPatientAPI.Interfaces
 
         //Create a practice --needs verification first
         //So I am going to leave it for now 
-        Task<Practice> AddPractice(Practice practice);
+        Task AddPractice(Practice practice);
     }
 }
