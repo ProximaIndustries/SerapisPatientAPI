@@ -29,9 +29,12 @@ namespace SerapisPatientAPI.Controllers
 
         // GET: api/Doctor/5
         [HttpGet("{id}", Name = "GetDoctor")]
-        public string Get(int id)
+        public string Get([FromBody]int id)
         {
-            return "value";
+            if (id != null)
+            {
+                return "value";
+            }
         }
         
         // POST: api/Doctor
@@ -49,8 +52,12 @@ namespace SerapisPatientAPI.Controllers
         
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete([FromBody]int id)
         {
+            if (id != null)
+            {
+                
+            }
         }
     }
 }

@@ -12,6 +12,7 @@ namespace SerapisPatientAPI.Controllers
     {
       
 
+
         // GET: Prescription/Details/5
         public ActionResult Details(int id)
         {

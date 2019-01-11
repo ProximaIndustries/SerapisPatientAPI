@@ -34,7 +34,6 @@ namespace SerapisPatientAPI.Data
         public async Task AddPatient(PatientUser patient )
         {
             await _context.PatientCollection.InsertOneAsync(patient);
-
         }
     }
 }
