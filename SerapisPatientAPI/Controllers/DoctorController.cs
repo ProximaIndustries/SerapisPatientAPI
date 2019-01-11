@@ -10,7 +10,7 @@ using SerapisPatientAPI.Model;
 namespace SerapisPatientAPI.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Doctor")]
+    [Route ("api/doctor")]
     public class DoctorController : Controller
     {
         
@@ -22,6 +22,7 @@ namespace SerapisPatientAPI.Controllers
 
         // GET: api/Doctor
         [HttpGet]
+        [Route ("api/Doctor")]
         public async Task<IEnumerable<Doctor>> Get()
         {
             return await _doctorRepository.GetAllDoctor(); 
@@ -34,6 +35,10 @@ namespace SerapisPatientAPI.Controllers
             if (id != null)
             {
                 return "value";
+            }
+            else
+            {
+                return null;
             }
         }
         

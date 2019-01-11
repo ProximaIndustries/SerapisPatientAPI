@@ -4,100 +4,43 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SerapisPatientAPI.Model.DoctorModel;
 
 namespace SerapisPatientAPI.Controllers
 {
+    [Produces("application/json")]
+    [Route("api/Prescription")]
     public class PrescriptionController : Controller
     {
-      
-
-
-        // GET: Prescription/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Prescription/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Prescription/Create
-        [HttpPost]
-        [Route ("api/prescription")]
-        [ValidateAntiForgeryToken]
-        public void Create(DoctorPrescription collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-            }
-            catch
-            {
-                
-            }
-        }
-
-        // GET: Prescription/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Prescription/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public void Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-               
-            }
-            catch
-            {
-               
-            }
-        }
-
-        // GET: Prescription/Delete/5
-        public void Delete(int id)
-        {
-            
-        }
-
+        // GET: api/Prescription
         [HttpGet]
-        [Route ("api/prescriptions")]
-        public List<DoctorPrescription> GetDoctorPrescription()
+        public IEnumerable<string> Get()
         {
-            List<DoctorPrescription> dummyPrescription = new List<DoctorPrescription>();
+            return new string[] { "value1", "value2" };
+        }
 
-            dummyPrescription = new List<DoctorPrescription>()
-            {
-                new DoctorPrescription{ PrescriptionDosage="22mg/hl", PrescriptionInstructions="Once every meal"}
-            };
-
-            return dummyPrescription;
+        // GET: api/Prescription/5
+        [HttpGet("{id}", Name = "Get")]
+        public string Get(int id)
+        {
+            return "value";
         }
         
-        // POST: Prescription/Delete/5
+        // POST: api/Prescription
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public void Delete(int id, IFormCollection collection)
+        public void Post([FromBody]string value)
         {
-            try
-            {
-                // TODO: Add delete logic here
-            }
-            catch
-            {
-               
-            }
+        }
+        
+        // PUT: api/Prescription/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody]string value)
+        {
+        }
+        
+        // DELETE: api/ApiWithActions/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
         }
     }
 }

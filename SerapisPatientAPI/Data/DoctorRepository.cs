@@ -32,9 +32,7 @@ namespace SerapisPatientAPI.Data
                 // log or manage the exception
                 throw ex;
             }
-            
-
-            
+           
         }
 
         public async Task AddDoctor(Doctor doc)
@@ -54,6 +52,16 @@ namespace SerapisPatientAPI.Data
                 //log or manage the exception
                 throw ex;
             }
+        }
+
+        public Task<Doctor> GetDoctor(ObjectId _id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Doctor> RemoveDoctor(ObjectId _id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

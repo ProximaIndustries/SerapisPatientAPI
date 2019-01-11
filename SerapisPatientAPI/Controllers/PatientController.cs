@@ -42,7 +42,7 @@ namespace SerapisPatientAPI.Controllers
         public async Task<IActionResult> Post([FromBody] PatientUser patient)
         {
             //should pass through the DTO befoere going to the model(business logic)
-            await _patientRepository.AddPatient(patient);
+            //await _patientRepository.AddPatient(patient);
             return new OkObjectResult(patient);
         }
 

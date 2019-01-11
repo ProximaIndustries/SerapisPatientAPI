@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using SerapisPatientAPI.Interfaces;
+using SerapisPatientAPI.Model;
 using SerapisPatientAPI.Model.PatientModel;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,26 @@ namespace SerapisPatientAPI.Data
                                                 .DeleteOneAsync(filter);
             return deleteResult.IsAcknowledged
                 && deleteResult.DeletedCount > 0;
+        }
+
+        public Task<Booking> AddBooking(Booking appointmentBooking)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Booking>> GetAllAvaliableBookings(IPracticeRepository maxPracticeDistance)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task CancelBooking(object _id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task PostponeBooking(object _id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

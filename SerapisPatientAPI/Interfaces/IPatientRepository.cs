@@ -12,14 +12,14 @@ namespace SerapisPatientAPI.Interfaces
         Task<IEnumerable<PatientUser>> GetAllPatients();
 
         //Add a new patient to the platform (used for the patient applcation)
-        Task AddPatient(PatientUser user);
+        Task AddPatient();
 
         //Remove the patient from the platfom (used in the patient application)
-        Task RemovePatient(object _id);
+        Task RemovePatient(PatientUser _id);
 
         //Put-- Edit patient information (used both in the doctor app and patient)
         //The doctor uses it to add information and edit incorrect medical information
         //The patient can add more information about themeselves
-        Task<PatientUser> EditPatientUser(object _id);
+        Task EditPatientUser(PatientUser _id);
     }
 }

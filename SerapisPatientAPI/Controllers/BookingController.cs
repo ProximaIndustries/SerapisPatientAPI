@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SerapisPatientAPI.Model;
 
 namespace SerapisPatientAPI.Controllers
 {
+    
     [Produces("application/json")]
-    [Route("api/Booking")]
+    [Route("api/booking")]
     public class BookingController : Controller
     {
         // GET: api/Booking
@@ -20,9 +22,20 @@ namespace SerapisPatientAPI.Controllers
 
         // GET: api/Booking/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public PatientUser GetBookedPatient(PatientUser id)
         {
-            return "value";
+            PatientUser userInformation=new PatientUser();
+
+            if (id !=null)
+            {
+                userInformation = id;
+
+                return userInformation;
+            }
+            else
+            {
+                return null;
+            }
         }
         
         // POST: api/Booking

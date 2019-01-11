@@ -17,6 +17,7 @@ namespace SerapisPatientAPI.Data
             _context = new Context();
         }
 
+        //For Doctor use only
         public async Task<IEnumerable<PatientUser>> GetAllPatients()
         {
             try
@@ -41,12 +42,32 @@ namespace SerapisPatientAPI.Data
             return internalId;
         }
 
-        public async Task AddPatient(PatientUser patient )
+        public async Task AddPatient()
         {
             //var res = Query<Product>.EQ(p => p.Id, id);
-            await _context.PatientCollection.InsertOneAsync(patient);
+            //await _context.PatientCollection.InsertOneAsync(res);
         }
-       
-        
+
+        public async Task RemovePatient(PatientUser _id)
+        {
+            if (_id != null)
+            {
+                //var somePredicate=Query<Patient>.Eq(p=>p.id, id)
+                //await _context.PatientCollection.DeleteOneAsync(somePredicate);
+            }
+            else
+            {
+                //don't do anything
+            }
+        }
+
+        public async Task EditPatientUser(PatientUser _id)
+        {
+            if (_id != null)
+            {
+                //var somePredicate=Query<Patient>.Eq(p=>p.id, id)
+               // await _context.PatientCollection.UpdateOneAsync<PatientUser>(somePredicate);
+            }
+        }
     }
 }
