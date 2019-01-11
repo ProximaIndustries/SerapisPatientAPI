@@ -52,7 +52,6 @@ namespace SerapisPatientAPI.Model
         [BsonElement("specilizationabbr")]
         public string Specilizationabbr { get; set; }
 
-       
     }
 
    

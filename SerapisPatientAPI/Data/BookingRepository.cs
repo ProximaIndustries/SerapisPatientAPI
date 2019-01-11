@@ -23,8 +23,6 @@ namespace SerapisPatientAPI.Data
             try
             {
                  await _context.BookingsCollection.InsertOneAsync(booking);
-                
-
             }
 
             catch (Exception ex)

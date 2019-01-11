@@ -12,7 +12,7 @@ namespace SerapisPatientAPI.Interfaces
         IEnumerable<DoctorPrescription> GetDocPrescription(int medId, int doctorId);
 
         //Post the prescription to mongoDb --Doctor app only 
-        DoctorPrescription PrescribeMedication();
+        IEnumerable<DoctorPrescription > PrescribeMedication();
 
         //Put -only a doctor can edit the prescription (going to add this feature later on)
         DoctorPrescription EditPrescription(int doctorId);

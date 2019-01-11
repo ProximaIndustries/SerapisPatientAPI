@@ -1,4 +1,5 @@
-﻿using SerapisPatientAPI.Model;
+﻿using MongoDB.Bson;
+using SerapisPatientAPI.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,19 @@ namespace SerapisPatientAPI.Interfaces
 {
     public interface IDoctorRepository
     {
+        //Add doctor to the platform (Doctor uses this method)
         Task AddDoctor(Doctor Doc);
+
+        //Gets all avalaible doctors --Used with patient app
         Task<IEnumerable<Doctor>> GetAllDoctor();
-        Task<Doctor> GetDoctor(string var1);
+
+        //Gets the doctors profile (Both patient and doctor have access to this method) 
+        Task<Doctor> GetDoctor(ObjectId _id);
+
+        //Delete-- Doctor from platform (doctor app uses this method)
+        Task<Doctor> RemoveDoctor(ObjectId _id);
+
+        //Put--Edit doctors informatiion. We must confirm before any changes are made (leave for now)
+
     }
 }

@@ -38,7 +38,7 @@ namespace SerapisPatientAPI
             //In order to access <name>Repository  using DI model, we add a new line in ConfigureServices
             services.AddTransient<IDoctorRepository, DoctorRepository>();
             services.AddTransient<IPracticeRepository, PracticeRepository>();
-            services.AddTransient<IPatientRepository, AccountRepository>();
+            services.AddTransient<IPatientRepository, PatientRepository>();
             services.AddTransient<IBookingRepository, BookingRepository>();
         }
 
