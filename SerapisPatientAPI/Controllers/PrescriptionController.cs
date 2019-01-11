@@ -19,7 +19,7 @@ namespace SerapisPatientAPI.Controllers
         }
 
         // GET: api/Prescription/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "GetPrescription")]
         public string Get(int id)
         {
             return "value";

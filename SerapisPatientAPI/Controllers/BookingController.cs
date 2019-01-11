@@ -21,7 +21,7 @@ namespace SerapisPatientAPI.Controllers
         }
 
         // GET: api/Booking/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "GetBooking")]
         public PatientUser GetBookedPatient(PatientUser id)
         {
             PatientUser userInformation=new PatientUser();
