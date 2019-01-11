@@ -1,4 +1,5 @@
 ﻿using SerapisPatientAPI.Model;
+using SerapisPatientAPI.Model.PatientModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace SerapisPatientAPI.Interfaces
 {
     public interface IBookingRepository
     {
+        Task MakeBooking(PatientBooking booking);
+
         //Create-- Make a booking for the patient
         Task<Booking> AddBooking(Booking appointmentBooking);
 

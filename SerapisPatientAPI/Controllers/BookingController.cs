@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SerapisPatientAPI.Interfaces;
 using SerapisPatientAPI.Model;
+using SerapisPatientAPI.Model.PatientModel;
 
 namespace SerapisPatientAPI.Controllers
 {
@@ -13,6 +15,12 @@ namespace SerapisPatientAPI.Controllers
     [Route("api/booking")]
     public class BookingController : Controller
     {
+        private readonly IBookingRepository _bookingRepository;
+
+        public BookingController(IBookingRepository bookingRepository)
+        {
+            _bookingRepository = bookingRepository;
+        }
         // GET: api/Booking
         [HttpGet]
         public IEnumerable<string> Get()
@@ -40,8 +48,11 @@ namespace SerapisPatientAPI.Controllers
         
         // POST: api/Booking
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<IActionResult> Post([FromBody]PatientBooking appointment)
         {
+            await _bookingRepository.MakeBooking(appointment);
+
+            return new OkObjectResult(appointment);
         }
         
         // PUT: api/Booking/5
