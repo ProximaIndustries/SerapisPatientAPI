@@ -21,7 +21,7 @@ namespace SerapisPatientAPI
 
         }
 
-        public IMongoCollection<Doctor> DoctorModel
+        public IMongoCollection<Doctor> DoctorCollection
         {
             get
             {

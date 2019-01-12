@@ -50,7 +50,7 @@ namespace SerapisPatientAPI.Controllers
             
         }
         
-        // PUT: api/Doctor/5
+        // PUT: api/Doctor/{objectId}
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(ObjectId id, [FromBody]Doctor doctor)
         {
