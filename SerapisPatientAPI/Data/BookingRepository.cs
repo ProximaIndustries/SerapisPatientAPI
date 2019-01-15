@@ -18,7 +18,6 @@ namespace SerapisPatientAPI.Data
             _context = new Context();   
         }
 
-
         public async Task MakeBooking(PatientBooking booking)
         {
             try
@@ -34,7 +33,6 @@ namespace SerapisPatientAPI.Data
 
         }
 
-
         public async Task<bool> UpdateBooking(PatientBooking booking)
         {
             ReplaceOneResult updateresult = await _context
@@ -45,7 +43,6 @@ namespace SerapisPatientAPI.Data
 
             return updateresult.IsAcknowledged && updateresult.ModifiedCount > 0;
         }
-
 
         public async Task<bool> Delete(string name)
         {
@@ -73,6 +70,52 @@ namespace SerapisPatientAPI.Data
         }
 
         public Task PostponeBooking(object _id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<PatientUser> GetPatientFileAsync(int _id)
+        {
+            //var predicate=somemongoFilter;
+            //await _context.PatientCollection.FindAsync;
+            return null;
+        }
+
+        public async Task<List<PatientBooking>> GetBookedPatientsAsync(
+            DateTime _dateBooked, Practice _practice)
+        {
+            try
+            {
+                Practice practice = new Practice();
+
+                var predicate = _dateBooked == DateTime.Today;
+
+                var predicate1 = _practice.PracticeName == practice.PracticeName;
+
+                if (predicate && predicate1)
+                {
+                    var filter = Builders<PatientBooking>
+                        .Filter
+                        .Eq("dateBooked", _dateBooked);
+
+                    //var result = await _context.PracticeCollection.Find(filter);
+
+                    //Temp code
+                    return null;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        Task<IEnumerable<Booking>> IBookingRepository.GetBookedPatientsAsync()
         {
             throw new NotImplementedException();
         }

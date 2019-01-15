@@ -17,22 +17,6 @@ namespace SerapisPatientAPI.Data
             _context = new Context();
         }
 
-        //For Doctor use only
-        public async Task<IEnumerable<PatientUser>> GetAllPatients()
-        {
-            try
-            {
-                var result = await  _context.PatientCollection
-                    .Find(_ => true).ToListAsync();
-
-                return result;
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
-        }
-
         private ObjectId GetInternalId(string id)
         {
             ObjectId internalId;
@@ -42,31 +26,105 @@ namespace SerapisPatientAPI.Data
             return internalId;
         }
 
-        public async Task AddPatient()
+        //Add patient to the platform
+        public async Task AddPatient(PatientUser newPatientToPlatform)
         {
-            //var res = Query<Product>.EQ(p => p.Id, id);
-            //await _context.PatientCollection.InsertOneAsync(res);
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
+        //Remove patient from the platform
         public async Task RemovePatient(PatientUser _id)
         {
-            if (_id != null)
+            try
             {
-                //var somePredicate=Query<Patient>.Eq(p=>p.id, id)
-                //await _context.PatientCollection.DeleteOneAsync(somePredicate);
+                if (_id != null)
+                {
+                    var filter = Builders<PatientUser>
+                        .Filter
+                        .Eq("_id", _id);
+
+                    var result = await _context.PatientCollection.DeleteOneAsync(filter);
+
+                    if (result.IsAcknowledged)
+                    {
+                        //send email to tell the customer that we have removed their profile
+                    }
+                    else
+                    {
+                        //There was error
+                    }
+                }
+                else
+                {
+                    //don't do anything
+                }
             }
-            else
+            catch (Exception ex)
             {
-                //don't do anything
+                throw ex;
             }
         }
 
+        //Edit patients file/information
         public async Task EditPatientUser(PatientUser _id)
         {
-            if (_id != null)
+            try
             {
-                //var somePredicate=Query<Patient>.Eq(p=>p.id, id)
-               // await _context.PatientCollection.UpdateOneAsync<PatientUser>(somePredicate);
+                if (_id != null)
+                {
+                    //Specifiy the filter 
+                    var filter = Builders<PatientUser>
+                        .Filter
+                        .Eq("_id", _id);
+
+                    //Get the information in the Mongo database
+                    //Need to add another parameter to the method up top
+                    var result = await _context.PatientCollection.UpdateOneAsync(filter, "Changed info object here");
+                }
+                else
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //Get a particular patient info
+        public async Task<PatientUser> GetPatientDetails(string name)
+        {
+            //5c0ef23c1c9d440000eee9ae
+
+            try
+            {
+                if (name != null)
+                {
+                    var filter = Builders<PatientUser>
+                         .Filter
+                         .Eq("firstName", name);
+
+                    var result = await _context.PatientCollection.Find(x => x.FirstName == name).FirstOrDefaultAsync();
+
+                    return result;
+                    
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
+using SerapisPatientAPI.Data;
+using SerapisPatientAPI.Interfaces;
 using SerapisPatientAPI.Model;
 
 namespace SerapisPatientAPI.Controllers
@@ -13,28 +16,41 @@ namespace SerapisPatientAPI.Controllers
     [Route("api/booking")]
     public class BookingController : Controller
     {
-        // GET: api/Booking
-        [HttpGet]
-        public IEnumerable<string> Get()
+        //Insatiate object
+        private readonly IPatientRepository _patientRepository;
+        public BookingController(IPatientRepository patientRepository)
         {
-            return new string[] { "value1", "value2" };
+            _patientRepository = patientRepository;
         }
 
-        // GET: api/Booking/5
-        [HttpGet("{id}", Name = "GetBooking")]
-        public PatientUser GetBookedPatient(PatientUser id)
+        // GET: api/Booking
+        [HttpGet]
+        public IEnumerable<string> GetPatientsBookedForTheDay(DateTime date)
         {
-            PatientUser userInformation=new PatientUser();
-
-            if (id !=null)
+            if (date.Date != DateTime.Today)
             {
-                userInformation = id;
-
-                return userInformation;
+                //They match todays date 
+                return null;
             }
             else
             {
                 return null;
+            }
+        }
+
+        // GET: api/Booking/objectId
+        [HttpGet("{_id}", Name = "GetBooking")]
+        public Task<PatientUser> GetBookedPatientFile(string _id)
+        {
+            try
+            {
+                var file = _patientRepository.GetPatientDetails(_id);
+
+                return file;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
         
