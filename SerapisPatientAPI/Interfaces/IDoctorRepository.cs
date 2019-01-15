@@ -19,9 +19,11 @@ namespace SerapisPatientAPI.Interfaces
         Task<Doctor> GetDoctor(ObjectId _id);
 
         //Delete-- Doctor from platform (doctor app uses this method)
-        Task<Doctor> RemoveDoctor(ObjectId _id);
+        Task<Doctor> EditDoctor(ObjectId _id);
 
         //Put--Edit doctors informatiion. We must confirm before any changes are made (leave for now)
 
+        //if doctor needs to edit his information use this method
+        Task<bool> EditDoctor(Doctor doctor);
     }
 }

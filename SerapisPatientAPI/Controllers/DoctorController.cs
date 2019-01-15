@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using SerapisPatientAPI.Interfaces;
 using SerapisPatientAPI.Model;
 
@@ -51,8 +52,18 @@ namespace SerapisPatientAPI.Controllers
         
         // PUT: api/Doctor/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async Task<IActionResult> Put(ObjectId id, [FromBody]Doctor doctor)
         {
+            var doctorfromdb = await _doctorRepository.GetDoctor(id);
+
+            if (doctorfromdb == null)
+                return new NotFoundResult();
+
+            doctor.Id = doctorfromdb.Id;
+
+            await _doctorRepository.EditDoctor(doctor);
+
+            return new OkObjectResult(doctor);
         }
         
         // DELETE: api/ApiWithActions/5

@@ -44,7 +44,6 @@ namespace SerapisPatientAPI.Data
         {
             try
             {
-
                 return await _context.DoctorModel.Find(doctor => doctor.FirstName == var1).FirstOrDefaultAsync();
             }
             catch(Exception ex)
@@ -59,7 +58,28 @@ namespace SerapisPatientAPI.Data
             throw new NotImplementedException();
         }
 
+        //the IsAcknowledged and ModifiedCount properties, this is how MongoDB keep track of changes.
+        //When doing operations such as, 'ReplaceOneAsync(...)' and 'DeleteOneAsync(...)', an object is returned, 
+        //with this object we can know the database is acknowledge and the amount of elements modified or deleted.
+        //We can use this information to identify the success or fail of our operation.
+        public async Task<bool> EditDoctor( Doctor doctor)
+        {
+            ReplaceOneResult replaceOne =
+               await _context.DoctorModel.ReplaceOneAsync(
+                    filter: d => d.Id == doctor.Id,
+                    replacement: doctor
+                    );
+
+            return replaceOne.IsAcknowledged && replaceOne.ModifiedCount > 0;
+
+        }
+
         public Task<Doctor> RemoveDoctor(ObjectId _id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Doctor> EditDoctor(ObjectId _id)
         {
             throw new NotImplementedException();
         }
