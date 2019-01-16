@@ -50,16 +50,16 @@ namespace SerapisPatientAPI.Controllers
             
         }
         
-        // PUT: api/Doctor/5
+        // PUT: api/Doctor/{objectId}
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(ObjectId id, [FromBody]Doctor doctor)
         {
-            var doctorfromdb = await _doctorRepository.GetDoctor(id);
+            var doctorFromDb = await _doctorRepository.GetDoctor(id);
 
-            if (doctorfromdb == null)
+            if (doctorFromDb == null)
                 return new NotFoundResult();
 
-            doctor.Id = doctorfromdb.Id;
+            doctor.Id = doctorFromDb.Id;
 
             await _doctorRepository.EditDoctor(doctor);
 

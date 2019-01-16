@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using SerapisPatientAPI.Model;
 using SerapisPatientAPI.Model.PatientModel;
 using System;
@@ -11,20 +12,32 @@ namespace SerapisPatientAPI
     public class Context
     {
         private readonly IMongoDatabase _database;
-
-        //string connectVar = "mongodb://Bonga:Langelihle1!@cluster0-shard-00-00-bkjo1.mongodb.net:27017,cluster0-shard-00-01-bkjo1.mongodb.net:27017,cluster0-shard-00-02-bkjo1.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true";
+        //public string ConnectionString = "mongodb+srv://Bonga:Langelihle1!@cluster0-bkjo1.mongodb.net/test?retryWrites=true";
 
         public string ConnectionString = "mongodb+srv://KhanyiTheGreat:Langelihle1!@cluster0-i3gjx.azure.mongodb.net/test?retryWrites=true";
-
+        //serapis
         public Context()
         {
             var client = new MongoClient(ConnectionString);
             if (client != null)
                 _database = client.GetDatabase("SerapisMedical");
+            bool isMongoLive = _database.RunCommandAsync((Command<BsonDocument>)"{ping:1}").Wait(1000);
+
+            if (isMongoLive)
+            {
+                Exception exception = new Exception();
+                //throw exception;
+            }
+            else
+            {
+                // couldn't connect
+                Exception _exception = new Exception();
+                //throw _exception;
+            }
 
         }
 
-        public IMongoCollection<Doctor> DoctorModel
+        public IMongoCollection<Doctor> DoctorCollection
         {
             get
             {
@@ -34,8 +47,7 @@ namespace SerapisPatientAPI
         }
 
         public IMongoCollection<PatientBooking> BookingsCollection => _database.GetCollection<PatientBooking>("PatientBookings");
-        
-
+         
         public IMongoCollection<Practice> PracticeCollection
         {
             get
