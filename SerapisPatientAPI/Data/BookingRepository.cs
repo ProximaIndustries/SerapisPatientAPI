@@ -74,12 +74,6 @@ namespace SerapisPatientAPI.Data
             throw new NotImplementedException();
         }
 
-        public async Task<PatientUser> GetPatientFileAsync(int _id)
-        {
-            //var predicate=somemongoFilter;
-            //await _context.PatientCollection.FindAsync;
-            return null;
-        }
 
         public async Task<List<PatientBooking>> GetBookedPatientsAsync(
             DateTime _dateBooked, Practice _practice)

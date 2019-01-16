@@ -112,15 +112,19 @@ namespace SerapisPatientAPI.Data
                          .Filter
                          .Eq("firstName", name);
 
-                    var result = await _context.PatientCollection.Find(x => x.FirstName == name).FirstOrDefaultAsync();
+                    var result = await _context.PatientCollection.Find(filter).FirstOrDefaultAsync();
 
                     return result;
-                    
+
                 }
                 else
                 {
                     return null;
                 }
+            }
+            catch (TimeoutException timeOut)
+            {
+                throw timeOut;
             }
             catch (Exception ex)
             {

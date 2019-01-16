@@ -4,10 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
-using SerapisPatientAPI.Data;
 using SerapisPatientAPI.Interfaces;
 using SerapisPatientAPI.Model;
+using SerapisPatientAPI.Model.PatientModel;
 
 namespace SerapisPatientAPI.Controllers
 {
@@ -16,11 +15,12 @@ namespace SerapisPatientAPI.Controllers
     [Route("api/booking")]
     public class BookingController : Controller
     {
-        //Insatiate object
+        private readonly IBookingRepository _bookingRepository;
         private readonly IPatientRepository _patientRepository;
-        public BookingController(IPatientRepository patientRepository)
+        public BookingController(IPatientRepository patientRepository, IBookingRepository bookingRepository)
         {
             _patientRepository = patientRepository;
+            _bookingRepository = bookingRepository;
         }
 
         // GET: api/Booking
@@ -38,26 +38,36 @@ namespace SerapisPatientAPI.Controllers
             }
         }
 
-        // GET: api/Booking/objectId
+        // GET: api/Booking/_id
         [HttpGet("{_id}", Name = "GetBooking")]
         public Task<PatientUser> GetBookedPatientFile(string _id)
         {
-            try
+            if (_id != null)
             {
-                var file = _patientRepository.GetPatientDetails(_id);
+                try
+                {
+                    var file = _patientRepository.GetPatientDetails(_id);
 
-                return file;
+                    return file;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                throw ex;
+                return null;
             }
         }
         
         // POST: api/Booking
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<IActionResult> Post([FromBody]PatientBooking appointment)
         {
+            await _bookingRepository.MakeBooking(appointment);
+
+            return new OkObjectResult(appointment);
         }
         
         // PUT: api/Booking/5
