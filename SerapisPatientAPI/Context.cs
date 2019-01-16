@@ -11,7 +11,10 @@ namespace SerapisPatientAPI
     public class Context
     {
         private readonly IMongoDatabase _database;
-        public string ConnectionString = "mongodb+srv://Bonga:langelihle1!@cluster0-bkjo1.mongodb.net/test?retryWrites=true";
+
+        //string connectVar = "mongodb://Bonga:Langelihle1!@cluster0-shard-00-00-bkjo1.mongodb.net:27017,cluster0-shard-00-01-bkjo1.mongodb.net:27017,cluster0-shard-00-02-bkjo1.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true";
+
+        public string ConnectionString = "mongodb+srv://KhanyiTheGreat:Langelihle1!@cluster0-i3gjx.azure.mongodb.net/test?retryWrites=true";
 
         public Context()
         {

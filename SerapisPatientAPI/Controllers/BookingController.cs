@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SerapisPatientAPI.Interfaces;
 using SerapisPatientAPI.Model;
 using SerapisPatientAPI.Model.PatientModel;
 
@@ -14,6 +15,14 @@ namespace SerapisPatientAPI.Controllers
     [Route("api/booking")]
     public class BookingController : Controller
     {
+        private readonly IBookingRepository _bookingRepository;
+        private readonly IPatientRepository _patientRepository;
+        public BookingController(IPatientRepository patientRepository, IBookingRepository bookingRepository)
+        {
+            _patientRepository = patientRepository;
+            _bookingRepository = bookingRepository;
+        }
+
         // GET: api/Booking
         [HttpGet]
         public IEnumerable<string> GetPatientsBookedForTheDay(DateTime date)
@@ -29,19 +38,26 @@ namespace SerapisPatientAPI.Controllers
             }
         }
 
-        // GET: api/Booking/objectId
+        // GET: api/Booking/_id
         [HttpGet("{_id}", Name = "GetBooking")]
         public Task<PatientUser> GetBookedPatientFile(string _id)
         {
-            try
+            if (_id != null)
             {
-                var file = _patientRepository.GetPatientDetails(_id);
+                try
+                {
+                    var file = _patientRepository.GetPatientDetails(_id);
 
-                return file;
+                    return file;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                throw ex;
+                return null;
             }
         }
         
