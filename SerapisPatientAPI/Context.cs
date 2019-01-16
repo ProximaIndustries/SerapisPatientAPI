@@ -12,7 +12,7 @@ namespace SerapisPatientAPI
     public class Context
     {
         private readonly IMongoDatabase _database;
-        public string ConnectionString = "mongodb+srv://Bonga:langelihle@cluster0-bkjo1.mongodb.net/test?retryWrites=true";
+       
 
         public string ConnectionString = "mongodb+srv://KhanyiTheGreat:Langelihle1!@cluster0-i3gjx.azure.mongodb.net/test?retryWrites=true";
         //serapis
