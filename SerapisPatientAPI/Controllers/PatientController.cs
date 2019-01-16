@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Driver;
-using SerapisPatientAPI.DTO;
+using MongoDB.Bson;
 using SerapisPatientAPI.Interfaces;
 using SerapisPatientAPI.Model;
 
@@ -16,41 +14,54 @@ namespace SerapisPatientAPI.Controllers
     [Route("api/Patient")]
     public class PatientController : Controller
     {
+        private readonly Context _context=null;
 
-        private readonly IPatientRepository _patientRepository;
-        public PatientController(IPatientRepository patientRepository)
-        {
-            _patientRepository = patientRepository;
-        }
 
-        //GET: api/Account
-        [HttpGet]
-        public async Task<IEnumerable<PatientUser>> Get()
-        {
-            return await _patientRepository.GetAllPatients();
-        }
-
-        // GET: api/Account/5
-        [HttpGet("{id}", Name = "GetAccount")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST: api/Account
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] PatientUser patient)
-        {
-            //should pass through the DTO befoere going to the model(business logic)
-            //await _patientRepository.AddPatient(patient);
-            return new OkObjectResult(patient);
-        }
-
-        // PUT: api/Account
-        public void Update(PatientUser patient)
-        {
-            
-        }
+        // GET: api/Patient
        
+
+        // GET: api/Patient/5
+        [HttpGet("{id}", Name = "Get")]
+        public async Task<PatientUser> GetPatientMedicalInformation(ObjectId _id)
+        {
+
+            if (_id != null)
+            {
+                try
+                {
+                    //Try get the patients information
+                    //var predicateFilter=filter
+                    //var patientsFile=_context.PatientCollection.FindAsync(predicateFilter);
+                    return null;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            else
+            {
+                //Return some error message
+                return null;
+            }
+        }
+        
+        // POST: api/Patient
+        [HttpPost]
+        public void Post([FromBody]string value)
+        {
+        }
+        
+        // PUT: api/Patient/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody]string value)
+        {
+        }
+        
+        // DELETE: api/ApiWithActions/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+        }
     }
 }

@@ -24,5 +24,12 @@ namespace SerapisPatientAPI.Interfaces
 
         //Postpone booking, (leave for now, for version 3.5 or something)
         Task PostponeBooking(object _id);
+
+        //Get a particular patients information
+        Task<PatientUser> GetPatientFileAsync(int _id);
+
+        //Get bookings for today
+        Task <IEnumerable<Booking>> GetBookedPatientsAsync();
+
     }
 }
