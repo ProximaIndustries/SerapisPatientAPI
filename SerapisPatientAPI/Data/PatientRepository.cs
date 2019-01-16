@@ -26,6 +26,22 @@ namespace SerapisPatientAPI.Data
             return internalId;
         }
 
+        //public async Task<IEnumerable<PatientUser>> GetAllPatient()
+        //{
+          //  try
+            //{
+              //  var result = await _context.PatientCollection
+              //      .Find(_ => true)
+              //      .ToListAsync();
+
+              //  return result;
+            //}
+            //catch(Exception ex)
+            //{
+            //
+            //}
+        //}
+
         //Add patient to the platform
         public async Task AddPatient(PatientUser newPatientToPlatform)
         {

@@ -24,7 +24,9 @@ namespace SerapisPatientAPI.Data
             try
             {
                 var result = await _context.DoctorCollection
-                .Find(_ => true).ToListAsync();
+                    .Find(_ => true)
+                    .ToListAsync();
+
                 return result;
             }
             catch (Exception ex)

@@ -14,11 +14,20 @@ namespace SerapisPatientAPI.Controllers
     [Route("api/Patient")]
     public class PatientController : Controller
     {
-        private readonly Context _context=null;
 
+        private readonly IPatientRepository _patientRepository;
 
+        public PatientController(IPatientRepository patientRepository)
+        {
+            _patientRepository = patientRepository;
+        }
         // GET: api/Patient
-       
+        [HttpGet]
+        [Route("api/Doctor")]
+       // public async Task<IEnumerable<PatientUser>> Get()
+       // {
+            //return await _patientRepository
+       // }
 
         // GET: api/Patient/5
         [HttpGet("{id}", Name = "Get")]
